@@ -4,12 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_app/page/debug/debug_data_page.dart';
 import 'package:flutter_admin_app/page/home/home_page.dart';
+import 'package:flutter_admin_app/page/main/main_screen.dart';
 import 'package:flutter_admin_app/widget/never_overscroll_indicator.dart';
 
 class NavigatorUtils {
   ///主页
   static goHome(BuildContext context) {
     Navigator.pushReplacementNamed(context, HomePage.sName);
+  }
+
+  ///Main
+  static goMain(BuildContext context) {
+    Navigator.pushReplacementNamed(context, MainScreen.sName);
   }
 
   ///弹出 dialog

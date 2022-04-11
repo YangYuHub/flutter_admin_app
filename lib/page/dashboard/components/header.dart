@@ -16,15 +16,15 @@ class Header extends StatelessWidget {
     return Row(
       children: [
         if (!Responsive.isDesktop(context))
-          // IconButton(
-          //   icon: Icon(Icons.menu),
-          //   onPressed: context.read<MenuController>().controlMenu,
-          // ),
-          if (!Responsive.isMobile(context))
-            Text(
-              "Dashboard",
-              style: Theme.of(context).textTheme.headline6,
-            ),
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: context.read<MenuController>().controlMenu,
+          ),
+        if (!Responsive.isMobile(context))
+          Text(
+            "Dashboard",
+            style: Theme.of(context).textTheme.headline6,
+          ),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
         Expanded(child: SearchField()),
@@ -48,7 +48,7 @@ class ProfileCard extends StatelessWidget {
         vertical: defaultPadding / 2,
       ),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).canvasColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         border: Border.all(color: Colors.white10),
       ),
@@ -81,7 +81,7 @@ class SearchField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: "Search",
-        fillColor: secondaryColor,
+        fillColor: Theme.of(context).canvasColor,
         filled: true,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,

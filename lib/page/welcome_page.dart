@@ -49,7 +49,7 @@ class _WelcomePageState extends State<WelcomePage> {
     });
     Future.delayed(const Duration(seconds: 1, milliseconds: 500), () {
       setState(() {
-        text = "GSYGithubApp";
+        text = "Flutter App";
         fontSize = 60;
       });
     });
@@ -62,7 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
       //   }
       //   return true;
       // });
-      NavigatorUtils.goHome(context);
+      NavigatorUtils.goMain(context);
     });
   }
 
@@ -76,9 +76,9 @@ class _WelcomePageState extends State<WelcomePage> {
             color: TColors.white,
             child: Stack(
               children: <Widget>[
-                const Center(
-                  child: Image(image: AssetImage('static/images/welcome.png')),
-                ),
+                // const Center(
+                //   child: Image(image: AssetImage('static/images/welcome.png')),
+                // ),
                 Align(
                   alignment: const Alignment(0.0, 0.3),
                   child: DiffScaleText(

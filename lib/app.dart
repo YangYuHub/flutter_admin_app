@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_app/page/debug/debug_label.dart';
+import 'package:flutter_admin_app/page/main/main_screen.dart';
 import 'package:flutter_admin_app/page/user/login/login.page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -126,6 +127,10 @@ class _FlutterReduxAppState extends State<FlutterReduxApp>
                 _context = context;
                 return NavigatorUtils.pageContainer(HomePage(), context);
               },
+              MainScreen.sName: (context) {
+                _context = context;
+                return NavigatorUtils.pageContainer(MainScreen(), context);
+              },
               LoginPage.sName: (context) {
                 _context = context;
                 return NavigatorUtils.pageContainer(const LoginPage(), context);
@@ -140,7 +145,8 @@ class _FlutterReduxAppState extends State<FlutterReduxApp>
         if (store.state.grey) {
           ///mode one
           app = ColorFiltered(
-              colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
+              colorFilter:
+                  const ColorFilter.mode(Colors.grey, BlendMode.saturation),
               child: app);
 
           ///mode tow

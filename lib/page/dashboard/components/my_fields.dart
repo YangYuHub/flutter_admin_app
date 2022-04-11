@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_admin_app/models/MyFiles.dart';
 import 'package:flutter_admin_app/responsive.dart';
 import 'package:flutter/material.dart';
@@ -18,21 +19,43 @@ class MyFiles extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "My Files",
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
+            if (!Responsive.isMobile(context))
+              Text(
+                "My Files",
+                style: Theme.of(context).textTheme.subtitle1,
               ),
-              onPressed: () {},
-              icon: Icon(Icons.add),
-              label: Text("Add New"),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical: defaultPadding /
+                          (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                  ),
+                  onPressed: () {
+                    AdaptiveTheme.of(context).toggleThemeMode();
+                  },
+                  icon: Icon(Icons.ac_unit_sharp),
+                  label: Text("Change Theme"),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton.icon(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical: defaultPadding /
+                          (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                  ),
+                  onPressed: () {},
+                  icon: Icon(Icons.add),
+                  label: Text("Add New"),
+                ),
+              ],
             ),
           ],
         ),
