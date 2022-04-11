@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_admin_app/page/debug/debug_data_page.dart';
 import 'package:flutter_admin_app/page/home/home_page.dart';
 import 'package:flutter_admin_app/widget/never_overscroll_indicator.dart';
 
@@ -30,5 +32,30 @@ class NavigatorUtils {
                 child: SafeArea(child: builder!(context)),
               ));
         });
+  }
+
+  ///Page页面的容器，做一次通用自定义
+  static Widget pageContainer(widget, BuildContext context) {
+    return MediaQuery(
+
+        ///不受系统字体缩放影响
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+        child: NeverOverScrollIndicator(
+          needOverload: false,
+          child: widget,
+        ));
+  }
+
+  ///公共打开方式
+  static NavigatorRouter(BuildContext context, Widget widget) {
+    return Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => pageContainer(widget, context)));
+  }
+
+  ///请求数据调试页面
+  static goDebugDataPage(BuildContext context) {
+    return NavigatorRouter(context, new DebugDataPage());
   }
 }

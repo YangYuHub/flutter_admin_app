@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_app/common/localization/gsy_string_base.dart';
-import 'package:flutter_admin_app/common/localization/gsy_string_en.dart';
-import 'package:flutter_admin_app/common/localization/gsy_string_zh.dart';
+import 'package:flutter_admin_app/common/localization/_string_base.dart';
+import 'package:flutter_admin_app/common/localization/_string_en.dart';
+import 'package:flutter_admin_app/common/localization/_string_zh.dart';
 
 ///自定义多语言实现
 class TLocalizations {

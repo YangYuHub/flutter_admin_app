@@ -19,4 +19,7 @@ class User {
     data['password'] = password;
     return data;
   }
+
+  // 命名构造函数
+  User.empty();
 }

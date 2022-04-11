@@ -1,4 +1,4 @@
-import 'package:flutter_admin_app/common/localization/gsy_string_base.dart';
+import 'package:flutter_admin_app/common/localization/_string_base.dart';
 
 class GSYStringEn extends TStringBase {
   @override

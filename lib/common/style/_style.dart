@@ -47,6 +47,9 @@ class TColors {
 
 ///文本样式
 class TConstant {
+  static const String app_default_share_url =
+      "https://github.com/CarGuo/gsy_github_app_flutter";
+
   static const lagerTextSize = 30.0;
   static const bigTextSize = 23.0;
   static const normalTextSize = 18.0;

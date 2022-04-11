@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_admin_app/common/config/config.dart';
@@ -10,9 +11,13 @@ import 'package:flutter_admin_app/redux/locale_redux.dart';
 import 'package:flutter_admin_app/redux/theme_redux.dart';
 import 'package:flutter_admin_app/common/style/_style.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/redux.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../localization/default_localizations.dart';
 
 /**
  * 通用逻辑
@@ -292,5 +297,32 @@ class CommonUtils {
                 ),
               ));
         });
+  }
+
+  static launchOutURL(String? url, BuildContext context) async {
+    if (url != null && await canLaunch(url)) {
+      await launch(url);
+    } else {
+      Fluttertoast.showToast(
+          msg: TLocalizations.i18n(context)!.option_web_launcher_error +
+              ": " +
+              (url ?? ""));
+    }
+  }
+
+  static copy(String? data, BuildContext context) {
+    Clipboard.setData(new ClipboardData(text: data));
+    Fluttertoast.showToast(
+        msg: TLocalizations.i18n(context)!.option_share_copy_success);
+  }
+
+  ///获取设备信息
+  static Future<String> getDeviceInfo() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isAndroid) {
+      return "";
+    }
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    return iosInfo.model;
   }
 }
