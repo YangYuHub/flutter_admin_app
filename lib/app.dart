@@ -72,7 +72,7 @@ class _FlutterReduxAppState extends State<FlutterReduxApp>
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       /// 通过 with NavigatorObserver ，在这里可以获取可以往上获取到
       /// MaterialApp 和 StoreProvider 的 context
       /// 还可以获取到 navigator;

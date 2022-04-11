@@ -5,7 +5,6 @@ import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_app/common/localization/default_localizations.dart';
 import 'package:flutter_admin_app/common/style/_style.dart';
-import 'package:flutter_admin_app/common/utils/navigator_utils.dart';
 import 'package:flutter_admin_app/page/dynamic_page.dart';
 import 'package:flutter_admin_app/page/my_page.dart';
 import 'package:flutter_admin_app/page/trend_page.dart';
@@ -17,7 +16,7 @@ import 'package:flutter_admin_app/page/home/home_drawer.dart';
  * 主页
  */
 class HomePage extends StatefulWidget {
-  static final String sName = "home";
+  static const String sName = "home";
 
   @override
   _HomePageState createState() => _HomePageState();

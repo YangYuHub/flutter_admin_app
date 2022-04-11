@@ -74,11 +74,11 @@ class HomeDrawer extends StatelessWidget {
                         UserAccountsDrawerHeader(
                           //Material内置控件
                           accountName: Text(
-                            user.login ?? "---",
+                            user.login ?? "Robert",
                             style: TConstant.largeTextWhite,
                           ),
                           accountEmail: Text(
-                            user.email ?? user.name ?? "---",
+                            user.email ?? user.name ?? "robert@gmail.com",
                             style: TConstant.normalTextLight,
                           ),
                           //用户名
