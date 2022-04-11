@@ -4,12 +4,15 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_admin_app/common/config/config.dart';
+import 'package:flutter_admin_app/common/local/local_storage.dart';
 import 'package:flutter_admin_app/common/utils/navigator_utils.dart';
 import 'package:flutter_admin_app/redux/grey_redux.dart';
 import 'package:flutter_admin_app/redux/global_state.dart';
 import 'package:flutter_admin_app/redux/locale_redux.dart';
 import 'package:flutter_admin_app/redux/theme_redux.dart';
 import 'package:flutter_admin_app/common/style/_style.dart';
+import 'package:flutter_admin_app/widget/gsy_flex_button.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
@@ -311,7 +314,7 @@ class CommonUtils {
   }
 
   static copy(String? data, BuildContext context) {
-    Clipboard.setData(new ClipboardData(text: data));
+    Clipboard.setData(ClipboardData(text: data));
     Fluttertoast.showToast(
         msg: TLocalizations.i18n(context)!.option_share_copy_success);
   }
@@ -324,5 +327,91 @@ class CommonUtils {
     }
     IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
     return iosInfo.model;
+  }
+
+  ///列表item dialog
+  static Future<Null> showCommitOptionDialog(
+    BuildContext context,
+    List<String?>? commitMaps,
+    ValueChanged<int> onTap, {
+    width = 250.0,
+    height = 400.0,
+    List<Color>? colorList,
+  }) {
+    return NavigatorUtils.showGSYDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            width: width,
+            height: height,
+            padding: const EdgeInsets.all(4.0),
+            margin: const EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: TColors.white,
+              //用一个BoxDecoration装饰器提供背景图片
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            ),
+            child: ListView.builder(
+                itemCount: commitMaps?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return GSYFlexButton(
+                    maxLines: 1,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    fontSize: 14.0,
+                    color: colorList != null
+                        ? colorList[index]
+                        : Theme.of(context).primaryColor,
+                    text: commitMaps![index],
+                    textColor: TColors.white,
+                    onPress: () {
+                      Navigator.pop(context);
+                      onTap(index);
+                    },
+                  );
+                }),
+          ),
+        );
+      },
+    );
+  }
+
+  static Future<Null> showEditDialog(
+    BuildContext context,
+    String dialogTitle,
+    ValueChanged<String>? onTitleChanged,
+    ValueChanged<String> onContentChanged,
+    VoidCallback onPressed, {
+    TextEditingController? titleController,
+    TextEditingController? valueController,
+    bool needTitle = true,
+  }) {
+    return NavigatorUtils.showGSYDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+              // child: new IssueEditDialog(
+              //   dialogTitle,
+              //   onTitleChanged,
+              //   onContentChanged,
+              //   onPressed,
+              //   titleController: titleController,
+              //   valueController: valueController,
+              //   needTitle: needTitle,
+              // ),
+              );
+        });
+  }
+
+  static showLanguageDialog(BuildContext context) {
+    StringList list = [
+      TLocalizations.i18n(context)!.home_language_default,
+      TLocalizations.i18n(context)!.home_language_zh,
+      TLocalizations.i18n(context)!.home_language_en,
+    ];
+    CommonUtils.showCommitOptionDialog(context, list, (index) {
+      CommonUtils.changeLocale(StoreProvider.of<GState>(context), index);
+      LocalStorage.save(Config.LOCALE, index.toString());
+    }, height: 150.0);
   }
 }

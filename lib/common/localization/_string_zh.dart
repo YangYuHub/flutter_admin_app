@@ -5,7 +5,7 @@ class GSYStringZh extends TStringBase {
   String welcomeMessage = "Welcome To Flutter";
 
   @override
-  String app_name = "GSYGithubApp";
+  String app_name = "Flutter App";
 
   @override
   String app_ok = "确定";
