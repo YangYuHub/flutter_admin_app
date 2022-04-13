@@ -62,6 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
       //   }
       //   return true;
       // });
+      // NavigatorUtils.goHome(context);
       NavigatorUtils.goMain(context);
     });
   }

@@ -193,8 +193,10 @@ class CommonUtils {
 
   static getThemeData(Color color) {
     return ThemeData(
+      brightness: Brightness.dark,
       primarySwatch: color as MaterialColor?,
       platform: TargetPlatform.android,
+
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
           systemNavigationBarContrastEnforced: true,
